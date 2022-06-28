@@ -6,7 +6,7 @@ const AllTasks = ({ tasks, handleDelete }) => {
       <table className="table w-full">
         <thead>
           <tr>
-            <th></th>
+            <th>Sl</th>
             <th>Task</th>
             <th>Desciption</th>
             <th>Action</th>

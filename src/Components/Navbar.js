@@ -54,8 +54,8 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div class="navbar-end">
-        <Link to="/login" class="btn btn-sm rounded-full">
+      <div className="navbar-end">
+        <Link to="/login" className="btn btn-sm rounded-full">
           login
         </Link>
       </div>

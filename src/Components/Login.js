@@ -1,12 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const Login = () => {
+  const [signInWithEmailAndPass] = useSignInWithEmailAndPassword(auth);
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const pass = event.target.pass.value;
+    await signInWithEmailAndPass(email, pass);
+  };
+
   return (
     <div className=" flex justify-center items-center min-h-[60vh] ">
       <div className=" w-full md:w-1/2 lg:w-1/2">
         <h2 className=" text-white text-3xl font-bold mb-10 ">Login here</h2>
-        <form onSubmit={""} action="">
+        <form onSubmit={handleLogin} action="">
           <input
             type="text"
             name="email"

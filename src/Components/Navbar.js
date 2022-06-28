@@ -27,6 +27,9 @@ const Navbar = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
               <Link to="/manage-profile">Manage Profile</Link>
             </li>
             <li>
@@ -35,11 +38,14 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" class="btn btn-ghost normal-case text-xl">
-          daisyUI
+          IELTS Proficiency
         </Link>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
+          <li>
+            <Link to="/home">Home</Link>
+          </li>
           <li>
             <Link to="/manage-profile">Manage Profile</Link>
           </li>

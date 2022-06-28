@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./Components/NotFound";
 import ManageProfile from "./Components/ManageProfile";
 import Dashboard from "./Components/Dashboard";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/manage-profile" element={<ManageProfile />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
     </div>

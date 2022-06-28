@@ -21,7 +21,7 @@ const AllTasks = ({ tasks, handleDelete }) => {
               <td>
                 <button
                   onClick={() => handleDelete(task.id)}
-                  className="btn btn-xs btn-error text-white mr-2"
+                  className="btn btn-xs btn-error text-white mr-2 rounded-full"
                 >
                   Delete
                 </button>

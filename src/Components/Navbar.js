@@ -54,6 +54,11 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      <div class="navbar-end">
+        <Link to="/login" class="btn btn-sm rounded-full">
+          login
+        </Link>
+      </div>
     </div>
   );
 };

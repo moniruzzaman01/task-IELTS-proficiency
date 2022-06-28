@@ -39,14 +39,14 @@ const Dashboard = () => {
           type="text"
           name="tName"
           placeholder="Task Name"
-          className=" block mx-auto border-none rounded-full h-10 max-w-md w-full px-5 mb-5"
+          className="input input-bordered input-primary block mx-auto rounded-full h-10 max-w-md w-full px-5 mb-5"
           required
         />
         <input
           type="text"
           name="tDesc"
           placeholder="Task Description"
-          className=" block mx-auto border-none rounded-full h-10 max-w-md w-full px-5 mb-5"
+          className="input input-bordered input-primary block mx-auto rounded-full h-10 max-w-md w-full px-5 mb-5"
           required
         />
         <button className=" h-10 btn-primary px-10 rounded-full font-bold uppercase ">

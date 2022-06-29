@@ -4,7 +4,8 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const Login = () => {
-  const [signInWithEmailAndPass, user] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPass, user, loading] =
+    useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/todo";
@@ -21,6 +22,14 @@ const Login = () => {
       navigate(from, { replace: true });
     }
   }, [user, navigate, from]);
+
+  if (loading) {
+    return (
+      <p className=" min-h-[70vh] flex justify-center items-center ">
+        Loading ...
+      </p>
+    );
+  }
 
   return (
     <div className=" flex justify-center items-center min-h-[60vh] ">

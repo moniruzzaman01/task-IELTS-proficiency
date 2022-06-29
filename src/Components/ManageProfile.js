@@ -1,10 +1,15 @@
 import React from "react";
-import { useAuthState, useUpdateProfile } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useUpdateEmail,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const ManageProfile = () => {
   const [authUser, loading] = useAuthState(auth);
   const [updateProfile] = useUpdateProfile(auth);
+  const [updateEmail, updating, updateEmailError] = useUpdateEmail(auth);
 
   const handleManageProfile = (event) => {
     event.preventDefault();
@@ -17,11 +22,15 @@ const ManageProfile = () => {
       updateProfile({ displayName: name });
     }
     if (authUser.email !== email) {
-      console.log("email");
+      updateEmail(email);
     }
   };
-  if (loading) {
-    return;
+  if (loading || updating) {
+    return (
+      <p className=" min-h-[70vh] flex justify-center items-center ">
+        Loading ...
+      </p>
+    );
   }
 
   return (
@@ -51,6 +60,11 @@ const ManageProfile = () => {
             placeholder="Password (********)"
             className="input input-bordered input-primary block mx-auto rounded-full h-10 w-full px-5 mb-5"
           />
+          {updateEmailError && (
+            <p className=" mb-5 text-red-500 text-left capitalize">
+              {updateEmailError?.message}
+            </p>
+          )}
           <button className=" h-10 btn-primary px-10 rounded-full font-bold uppercase ">
             update
           </button>

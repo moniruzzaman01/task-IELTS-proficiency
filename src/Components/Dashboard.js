@@ -8,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (authUser) {
       fetch(
-        `https://peaceful-waters-86091.herokuapp.com/tasks/${authUser.email}`
+        `https://infinite-hollows-86577.herokuapp.com/tasks/${authUser.email}`
       )
         .then((res) => res.json())
         .then((data) => setTasks(data));
@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
 
   const handleDelete = (id) => {
-    fetch(`https://peaceful-waters-86091.herokuapp.com/tasks/${id}`, {
+    fetch(`https://infinite-hollows-86577.herokuapp.com/tasks/${id}`, {
       method: "delete",
     })
       .then((res) => res.json())
@@ -38,7 +38,7 @@ const Dashboard = () => {
     const taskDesc = event.target.tDesc.value;
     const task = { userEmail, taskName, taskDesc };
 
-    await fetch(`https://peaceful-waters-86091.herokuapp.com/tasks`, {
+    await fetch(`https://infinite-hollows-86577.herokuapp.com/tasks`, {
       method: "post",
       headers: {
         "content-type": "application/json",

@@ -18,8 +18,16 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
 
   const handleDelete = (id) => {
-    const filtered = tasks.filter((task) => task.id !== id);
-    setTasks(filtered);
+    fetch(`https://peaceful-waters-86091.herokuapp.com/tasks/${id}`, {
+      method: "delete",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount === 1) {
+          const filtered = tasks.filter((task) => task._id !== id);
+          setTasks(filtered);
+        }
+      });
   };
 
   const addTodo = async (event) => {

@@ -8,7 +8,7 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || "/todo";
+  const from = location?.state?.from?.pathname || "/";
 
   const handleLogin = async (event) => {
     event.preventDefault();

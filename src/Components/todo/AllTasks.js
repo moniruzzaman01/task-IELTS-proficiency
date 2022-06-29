@@ -20,7 +20,7 @@ const AllTasks = ({ tasks, handleDelete }) => {
               <td>{task.taskDesc}</td>
               <td>
                 <button
-                  onClick={() => handleDelete(task.id)}
+                  onClick={() => handleDelete(task._id)}
                   className="btn btn-xs btn-error text-white mr-2 rounded-full"
                 >
                   Delete

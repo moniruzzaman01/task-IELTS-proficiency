@@ -9,7 +9,7 @@ import auth from "../firebase.init";
 
 const ManageProfile = () => {
   const [authUser, loading] = useAuthState(auth);
-  const [updateProfile] = useUpdateProfile(auth);
+  const [updateProfile, profileUpdating] = useUpdateProfile(auth);
   const [updateEmail, emailUpdating, updateEmailError] = useUpdateEmail(auth);
   const [updatePass, passUpdating, updatePassError] = useUpdatePassword(auth);
 
@@ -30,7 +30,7 @@ const ManageProfile = () => {
       updatePass(pass);
     }
   };
-  if (loading || emailUpdating || passUpdating) {
+  if (loading || profileUpdating || emailUpdating || passUpdating) {
     return (
       <p className=" min-h-[70vh] flex justify-center items-center ">
         Loading ...

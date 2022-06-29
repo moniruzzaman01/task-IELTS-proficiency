@@ -1,10 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const Login = () => {
   const [signInWithEmailAndPass, user] = useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/todo";
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -13,10 +16,11 @@ const Login = () => {
     const pass = event.target.pass.value;
     await signInWithEmailAndPass(email, pass);
   };
-
-  if (user) {
-    console.log(user);
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, navigate, from]);
 
   return (
     <div className=" flex justify-center items-center min-h-[60vh] ">

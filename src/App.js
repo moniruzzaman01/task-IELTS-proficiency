@@ -7,6 +7,7 @@ import ManageProfile from "./Components/ManageProfile";
 import Dashboard from "./Components/Dashboard";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+import RequireAuth from "./Components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -15,7 +16,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
-        <Route path="/manage-profile" element={<ManageProfile />}></Route>
+        <Route
+          path="/manage-profile"
+          element={
+            <RequireAuth>
+              <ManageProfile />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>

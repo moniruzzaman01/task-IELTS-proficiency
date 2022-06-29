@@ -7,7 +7,8 @@ import {
 import auth from "../firebase.init";
 
 const SignUp = () => {
-  const [createUserWithEmailAndPass] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPass, user] =
+    useCreateUserWithEmailAndPassword(auth);
   const [updateProfile] = useUpdateProfile(auth);
 
   const handleSignup = async (event) => {
@@ -22,6 +23,10 @@ const SignUp = () => {
 
     event.target.reset();
   };
+
+  if (user) {
+    console.log(user);
+  }
 
   return (
     <div className=" flex justify-center items-center min-h-[60vh] ">

@@ -4,7 +4,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const Login = () => {
-  const [signInWithEmailAndPass] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPass, user] = useSignInWithEmailAndPassword(auth);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -13,6 +13,10 @@ const Login = () => {
     const pass = event.target.pass.value;
     await signInWithEmailAndPass(email, pass);
   };
+
+  if (user) {
+    console.log(user);
+  }
 
   return (
     <div className=" flex justify-center items-center min-h-[60vh] ">

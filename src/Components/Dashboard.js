@@ -1,30 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllTasks from "./todo/AllTasks";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const Dashboard = () => {
-  const data = [
-    {
-      id: 1,
-      taskName: "test task1",
-      taskDesc: "test desc1",
-    },
-  ];
-  const [tasks, setTasks] = useState(data);
+  const [authUser] = useAuthState(auth);
+  useEffect(() => {
+    if (authUser) {
+      fetch(
+        `https://peaceful-waters-86091.herokuapp.com/tasks/${authUser.email}`
+      )
+        .then((res) => res.json())
+        .then((data) => setTasks(data));
+    }
+  }, [authUser]);
+
+  const [tasks, setTasks] = useState([]);
 
   const handleDelete = (id) => {
     const filtered = tasks.filter((task) => task.id !== id);
     setTasks(filtered);
   };
 
-  const addTodo = (event) => {
+  const addTodo = async (event) => {
     event.preventDefault();
 
-    const id = tasks.length + 1;
+    const userEmail = authUser.email;
     const taskName = event.target.tName.value;
     const taskDesc = event.target.tDesc.value;
-    const newTodo = [...tasks, { id, taskName, taskDesc }];
-    setTasks(newTodo);
+    const task = { userEmail, taskName, taskDesc };
 
+    await fetch(`https://peaceful-waters-86091.herokuapp.com/tasks`, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          const a = [...tasks, task];
+          setTasks(a);
+        }
+      });
     event.target.reset();
   };
 
